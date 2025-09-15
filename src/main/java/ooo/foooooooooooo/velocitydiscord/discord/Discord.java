@@ -22,6 +22,7 @@ import ooo.foooooooooooo.velocitydiscord.config.ServerConfig;
 import ooo.foooooooooooo.velocitydiscord.config.definitions.WebhookConfig;
 import ooo.foooooooooooo.velocitydiscord.discord.commands.ICommand;
 import ooo.foooooooooooo.velocitydiscord.discord.commands.ListCommand;
+import ooo.foooooooooooo.velocitydiscord.discord.commands.WhitelistCommand;
 import ooo.foooooooooooo.velocitydiscord.discord.message.IQueuedMessage;
 import ooo.foooooooooooo.velocitydiscord.util.StringTemplate;
 
@@ -69,7 +70,7 @@ public class Discord extends ListenerAdapter {
     if (VelocityDiscord.CONFIG.global.discord.commands.list.enabled) {
       this.commands.put(ListCommand.COMMAND_NAME, new ListCommand());
     }
-
+    this.commands.put(WhitelistCommand.COMMAND_NAME, new WhitelistCommand());
     if (!VelocityDiscord.CONFIG.global.discord.token.equals(this.lastToken)) {
       if (this.jda != null) {
         shutdown();
@@ -156,6 +157,7 @@ public class Discord extends ListenerAdapter {
         guild.upsertCommand(entry.getKey(), entry.getValue().description()).queue();
       }
     }
+
   }
 
   @Override

@@ -12,3 +12,5 @@ bin/
 .env
 
 deps/*.jar
+.DS_Store
+src/.DS_Store
